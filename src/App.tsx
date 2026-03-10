@@ -4,6 +4,7 @@ import CountryForm from './components/CountryForm'
 import CountryList from './components/CountryList'
 import CountryDetails from './components/CountryDetails'
 import type { Country } from './types/country'
+import { Alert, Box, Typography } from '@mui/material'
 
 const BASEURL =
   'https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,languages,flags,capitalInfo'
@@ -58,13 +59,12 @@ function App() {
 
   const shouldShowList = !tooManyMatches && !selectedCountry && countryNamesToShow.length > 1
 
-
-
   return (
-    <>
-      <h1>Country info</h1>
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h3" component="h1" gutterBottom>Country info</Typography>
+
       <CountryForm value={searchWord} onChange={handleSearchWordChange} />
-      {tooManyMatches && <div> Too many matches</div>}
+      {tooManyMatches && <Alert severity="info"> Too many matches</Alert>}
       {shouldShowList && (
         <CountryList
           countriesToShow={countryNamesToShow}
@@ -72,10 +72,16 @@ function App() {
         />
       )}
       {activeCountryDetails && (
-        <CountryDetails countryDetails={activeCountryDetails} />
+      <CountryDetails
+        countryDetails={activeCountryDetails}
+        onBackToList={
+          selectedCountry
+            ? () => setSelectedCountry(null)
+            : undefined
+        }
+      />
       )}
-
-    </>
+    </Box>
   
   )
 }

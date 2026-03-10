@@ -1,11 +1,13 @@
 import Weather from './Weather'
 import type { Country } from '../types/country'
+import { Button } from '@mui/material'
 
 type CountryDetailsProps = {
     countryDetails: Country
+    onBackToList?: () => void
 }
 
-const CountryDetails = ({ countryDetails }: CountryDetailsProps) => {
+const CountryDetails = ({ countryDetails, onBackToList }: CountryDetailsProps) => {
     const lat = countryDetails.capitalInfo?.latlng?.[0]
     const lng = countryDetails.capitalInfo?.latlng?.[1]
     const capital = countryDetails.capital?.[0] ?? 'N/A'
@@ -15,6 +17,11 @@ const CountryDetails = ({ countryDetails }: CountryDetailsProps) => {
 
     return (
         <div>
+            {onBackToList && (
+                <Button variant="text" size="small" onClick={onBackToList}>
+                    ← Back to list
+                </Button>
+            )}
             <h1>{countryDetails.name.common}</h1>
             <div>capital {capital}</div>
             <div>area {countryDetails.area}</div>

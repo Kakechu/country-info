@@ -1,3 +1,5 @@
+import { Button, Card, CardContent, CardHeader, List, ListItem, ListItemText, Typography } from "@mui/material"
+
 type CountryListProps = {
     countriesToShow: string[]
     setSelectedCountry: (country: string) => void
@@ -5,15 +7,20 @@ type CountryListProps = {
 
 const CountryList = ({ countriesToShow, setSelectedCountry }: CountryListProps) => {
     return (
-        <div>
+        <Card>
+        <CardHeader title="Matching countries" />
+        <CardContent>
+        <List dense>
             {countriesToShow.map(countryToShow => (
-                <div key={countryToShow}>
-                    {countryToShow}
-                    <button onClick={() => setSelectedCountry(countryToShow)}>show</button>
-                </div>
+                <ListItem key={countryToShow} secondaryAction={<Button variant="outlined" size="small" onClick={() => setSelectedCountry(countryToShow)}>show</Button>}>
+                    <ListItemText primary={countryToShow} />
+                </ListItem>
             ))}
-            <div>Show country info by selecting a country</div>
-        </div>
+            
+        </List>
+        </CardContent>
+        <Typography variant="body2" color="text.secondary">Show country info by selecting a country</Typography>
+        </Card>
     )
 }
 

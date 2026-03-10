@@ -1,4 +1,4 @@
-import { Input } from '@mui/material'
+import { TextField } from '@mui/material'
 import type { ChangeEvent } from 'react'
 
 type CountryFormProps = {
@@ -8,10 +8,7 @@ type CountryFormProps = {
 
 const CountryForm = ({ value, onChange }: CountryFormProps) => {
   return (
-    <form>
-      <div>Find countries</div>
-      <Input value={value} onChange={onChange} />
-    </form>
+      <TextField label="Find countries" variant="outlined" size="small" helperText="Start typing a country name" value={value} onChange={onChange} />
   )
 }
 

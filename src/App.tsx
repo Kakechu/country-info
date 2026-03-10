@@ -61,8 +61,9 @@ function App() {
 
   return (
     <Box sx={{ mt: 4 }}>
-      <Typography variant="h3" component="h1" gutterBottom>Country info</Typography>
 
+      <Typography variant="h3" component="h1" gutterBottom>Country info</Typography>
+      
       <CountryForm value={searchWord} onChange={handleSearchWordChange} />
       {tooManyMatches && <Alert severity="info"> Too many matches</Alert>}
       {shouldShowList && (
@@ -71,6 +72,7 @@ function App() {
           setSelectedCountry={setSelectedCountry}
         />
       )}
+      
       {activeCountryDetails && (
       <CountryDetails
         countryDetails={activeCountryDetails}

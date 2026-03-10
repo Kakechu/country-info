@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardHeader, List, ListItem, ListItemText, Typography } from "@mui/material"
+import { Button, Card, CardContent, CardHeader, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material"
 
 type CountryListProps = {
     countriesToShow: string[]
@@ -12,8 +12,10 @@ const CountryList = ({ countriesToShow, setSelectedCountry }: CountryListProps) 
         <CardContent>
         <List dense>
             {countriesToShow.map(countryToShow => (
-                <ListItem key={countryToShow} secondaryAction={<Button variant="outlined" size="small" onClick={() => setSelectedCountry(countryToShow)}>show</Button>}>
+                <ListItem key={countryToShow} disablePadding>
+                    <ListItemButton onClick={() => setSelectedCountry(countryToShow)}>
                     <ListItemText primary={countryToShow} />
+                    </ListItemButton>
                 </ListItem>
             ))}
             

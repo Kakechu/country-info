@@ -6,10 +6,13 @@ export type Country = {
   capital?: string[]
   region?: string
   languages?: Record<string, string>
-  currencies?: Record<string, {
-    name: string
-    symbol?: string
-  }>
+  currencies?: Record<
+    string,
+    {
+      name: string
+      symbol?: string
+    }
+  >
   flags: {
     png: string
     alt?: string

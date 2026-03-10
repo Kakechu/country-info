@@ -7,16 +7,14 @@ const container = document.getElementById('root')
 const theme = createTheme()
 
 if (!container) {
-	throw new Error('Root container missing in index.html')
+  throw new Error('Root container missing in index.html')
 }
 
-
-
 createRoot(container).render(
-	<ThemeProvider theme={theme}>
-		<CssBaseline />
-		<Container maxWidth="md">
-			<App />
-		</Container>
-	</ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Container maxWidth="md">
+      <App />
+    </Container>
+  </ThemeProvider>,
 )

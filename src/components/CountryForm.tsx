@@ -8,7 +8,14 @@ type CountryFormProps = {
 
 const CountryForm = ({ value, onChange }: CountryFormProps) => {
   return (
-      <TextField label="Find countries" variant="outlined" size="small" helperText="Start typing a country name" value={value} onChange={onChange} />
+    <TextField
+      label="Find countries"
+      variant="outlined"
+      size="small"
+      helperText="Start typing a country name"
+      value={value}
+      onChange={onChange}
+    />
   )
 }
 

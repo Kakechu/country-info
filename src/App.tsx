@@ -18,7 +18,7 @@ function App() {
     setSearchWord(event.target.value)
     setSelectedCountry(null)
   }
-  
+
   // Get all countries on mount
   useEffect(() => {
     const fetchCountries = async () => {
@@ -36,23 +36,20 @@ function App() {
   const normalizedSearch = searchWord.trim().toLowerCase()
 
   const filteredCountries = normalizedSearch
-    ? countries.filter(country =>
-        country.name.common.toLowerCase().includes(normalizedSearch)
-      )
+    ? countries.filter((country) => country.name.common.toLowerCase().includes(normalizedSearch))
     : []
 
   const tooManyMatches = filteredCountries.length > 10
 
-  const countryNamesToShow = !tooManyMatches && filteredCountries.length > 1
-    ? filteredCountries.map(country => country.name.common)
-    : []
+  const countryNamesToShow =
+    !tooManyMatches && filteredCountries.length > 1
+      ? filteredCountries.map((country) => country.name.common)
+      : []
 
-  const autoSelectedCountry = filteredCountries.length === 1
-    ? filteredCountries[0]
-    : null
+  const autoSelectedCountry = filteredCountries.length === 1 ? filteredCountries[0] : null
 
   const manuallySelectedCountry = selectedCountry
-    ? countries.find(c => c.name.common === selectedCountry) || null
+    ? countries.find((c) => c.name.common === selectedCountry) || null
     : null
 
   const activeCountryDetails = manuallySelectedCountry || autoSelectedCountry
@@ -61,32 +58,24 @@ function App() {
 
   return (
     <Box sx={{ mt: 4 }}>
+      <Typography variant="h3" component="h1" gutterBottom>
+        Country info
+      </Typography>
 
-      <Typography variant="h3" component="h1" gutterBottom>Country info</Typography>
-      
       <CountryForm value={searchWord} onChange={handleSearchWordChange} />
       {tooManyMatches && <Alert severity="info"> Too many matches</Alert>}
       {shouldShowList && (
-        <CountryList
-          countriesToShow={countryNamesToShow}
-          setSelectedCountry={setSelectedCountry}
+        <CountryList countriesToShow={countryNamesToShow} setSelectedCountry={setSelectedCountry} />
+      )}
+
+      {activeCountryDetails && (
+        <CountryDetails
+          countryDetails={activeCountryDetails}
+          onBackToList={selectedCountry ? () => setSelectedCountry(null) : undefined}
         />
       )}
-      
-      {activeCountryDetails && (
-      <CountryDetails
-        countryDetails={activeCountryDetails}
-        onBackToList={
-          selectedCountry
-            ? () => setSelectedCountry(null)
-            : undefined
-        }
-      />
-      )}
     </Box>
-  
   )
 }
 
 export default App
-

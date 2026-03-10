@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ChangeEvent } from 'react'
 import axios from 'axios'
-import CountryForm from './components/CountryForm.jsx'
-import CountryList from './components/CountryList.jsx'
-import CountryDetails from './components/CountryDetails.jsx'
-import { Card } from '@mui/material'
+import CountryForm from './components/CountryForm'
+import CountryList from './components/CountryList'
+import CountryDetails from './components/CountryDetails'
+import type { Country } from './types/country'
 
-
-const BASEURL = "https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,languages,flags,capitalInfo"
+const BASEURL =
+  'https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,languages,flags,capitalInfo'
 
 function App() {
-  const [countries, setCountries] = useState([])
-  const [searchWord, setSearchWord] = useState("")
-  const [selectedCountry, setSelectedCountry] = useState(null)
+  const [countries, setCountries] = useState<Country[]>([])
+  const [searchWord, setSearchWord] = useState<string>('')
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
 
-
-  const handleSearchWordChange = (event) => {
+  const handleSearchWordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(event.target.value)
     setSelectedCountry(null)
   }
@@ -23,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get(BASEURL)
+        const response = await axios.get<Country[]>(BASEURL)
         setCountries(response.data)
       } catch (error) {
         console.error('Error fetching countries:', error)

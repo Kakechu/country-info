@@ -58,7 +58,7 @@ const Weather = ({ city, lat, lng }: WeatherProps) => {
     }, [lat, lng])
 
     if (!weatherData) {
-        return <p>Loading weather...</p>
+        return <Typography>Loading weather...</Typography>
     }
 
     const { current_weather, daily } = weatherData

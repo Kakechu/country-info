@@ -1,6 +1,6 @@
 import Weather from './Weather'
 import type { Country } from '../types/country'
-import { Box, Button, Card, CardContent, Paper, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 
 type CountryDetailsProps = {
     countryDetails: Country
@@ -62,12 +62,32 @@ const CountryDetails = ({ countryDetails, onBackToList }: CountryDetailsProps) =
                 {/* Currencies box */}
                 <Paper variant="outlined" sx={{ mt: 3, p: 2, backgroundColor: 'grey.50'}}>
                     <Typography variant="h6">Currencies:</Typography>
-                    {currencies.map(([code, currency]) => (
-                        <Typography key={code}>
-                        <strong>{currency.name}</strong> – {code}
-                        {currency.symbol ? ` (${currency.symbol})` : ''}
+                    {currencies.length > 0 ? (
+                        <Table size="small"   sx={{
+                            '& td': { border: 0 },
+                        }}>
+                        <TableHead>
+                            <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Short name</TableCell>
+                            <TableCell>Symbol</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {currencies.map(([code, currency]) => (
+                            <TableRow key={code}>
+                                <TableCell>{currency.name}</TableCell>
+                                <TableCell>{code}</TableCell>
+                                <TableCell>{currency.symbol ?? '—'}</TableCell>
+                            </TableRow>
+                            ))}
+                        </TableBody>
+                        </Table>
+                    ) : (
+                        <Typography variant="body2" color="text.secondary">
+                        No currency data available
                         </Typography>
-                    ))}
+                    )}
                 </Paper>
 
                 {/* Weather box */}

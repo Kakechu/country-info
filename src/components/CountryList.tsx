@@ -10,18 +10,18 @@ const CountryList = ({ countriesToShow, setSelectedCountry }: CountryListProps) 
         <Card>
         <CardHeader title="Matching countries" />
         <CardContent>
-        <List dense>
-            {countriesToShow.map(countryToShow => (
-                <ListItem key={countryToShow} disablePadding>
-                    <ListItemButton onClick={() => setSelectedCountry(countryToShow)}>
-                    <ListItemText primary={countryToShow} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
-            
-        </List>
+            <List dense>
+                {countriesToShow.map(countryToShow => (
+                    <ListItem key={countryToShow} disablePadding>
+                        <ListItemButton onClick={() => setSelectedCountry(countryToShow)}>
+                        <ListItemText primary={countryToShow} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Typography variant="body2" color="text.secondary">Show country info by selecting a country</Typography>
         </CardContent>
-        <Typography variant="body2" color="text.secondary">Show country info by selecting a country</Typography>
+        
         </Card>
     )
 }

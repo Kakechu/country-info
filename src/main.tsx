@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import { Container, ThemeProvider, CssBaseline } from '@mui/material'
+import { createTheme, Container, ThemeProvider, CssBaseline } from '@mui/material'
 import App from './App'
-import { theme } from './theme'
 
 const container = document.getElementById('root')
+
+const theme = createTheme()
 
 if (!container) {
 	throw new Error('Root container missing in index.html')

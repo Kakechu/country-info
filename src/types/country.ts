@@ -5,6 +5,7 @@ export type Country = {
   }
   capital?: string[]
   region?: string
+  population?: number
   languages?: Record<string, string>
   currencies?: Record<
     string,

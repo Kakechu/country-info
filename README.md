@@ -4,7 +4,6 @@ This is a small React project to display country information from restcountries.
 
 It has been created using Vite as the development environoment and build tool.
 
-
 ### Features
 
 - Search for countries by name
@@ -21,6 +20,7 @@ It has been created using Vite as the development environoment and build tool.
 ### Getting started
 
 #### Prerequisites
+
 - Node.js (LTS version recommended)
 - npm
 
@@ -28,17 +28,16 @@ It has been created using Vite as the development environoment and build tool.
 
 Clone the project by opening your terminal and running the following commands:
 
-``` bash
+```bash
 git clone https://github.com/Kakechu/country-info.git
 cd country info
 ```
+
 Install the app:
 
-``` bash
+```bash
 npm install
 npm run dev
 ```
 
-Then open the URL shown in the terminal (usually http://localhost:5173)
-
-
+Then open the URL shown in the terminal (usually http://localhost:5173).

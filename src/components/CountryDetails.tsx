@@ -23,7 +23,12 @@ const CountryDetails = ({ countryDetails, onBackToList }: CountryDetailsProps) =
   const lat = countryDetails.capitalInfo?.latlng?.[0]
   const lng = countryDetails.capitalInfo?.latlng?.[1]
   const capital = countryDetails.capital?.[0] ?? 'N/A'
-
+  const population =
+    countryDetails.population != null
+      ? countryDetails.population >= 1_000_000
+        ? `${(countryDetails.population / 1_000_000).toFixed(1)} million`
+        : countryDetails.population.toLocaleString()
+      : 'Population info not available'
   const languages = Object.values(countryDetails.languages ?? {})
   const flagAlt = countryDetails.flags.alt ?? `${countryDetails.name.common} flag`
   const currencies = Object.entries(countryDetails.currencies ?? {})
@@ -54,6 +59,10 @@ const CountryDetails = ({ countryDetails, onBackToList }: CountryDetailsProps) =
           <Box display="flex" gap={1}>
             <Typography fontWeight="bold">Capital:</Typography>
             <Typography>{capital}</Typography>
+          </Box>
+          <Box display="flex" gap={1}>
+            <Typography fontWeight="bold">Population:</Typography>
+            <Typography>{population}</Typography>
           </Box>
           <Box display="flex" gap={1}>
             <Typography fontWeight="bold">Region:</Typography>

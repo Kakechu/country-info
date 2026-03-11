@@ -7,7 +7,7 @@ import type { Country } from './types/country'
 import { Alert, Box, Typography } from '@mui/material'
 
 const BASEURL =
-  'https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,languages,flags,capitalInfo'
+  'https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,languages,flags,capitalInfo,population'
 
 function App() {
   const [countries, setCountries] = useState<Country[]>([])

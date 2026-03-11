@@ -2,13 +2,13 @@
 
 This is a small React project to display country information from restcountries.com, as well as weather information from open-meteo.com.
 
-It has been created using Vite as the development environoment and build tool.
+It has been created using Vite as the development environment and build tool.
 
 ### Features
 
 - Search for countries by name
 - View basic information, such as capital, population and languages
-- See current weathre for the selected country's capital
+- See current weather for the selected country's capital
 
 ### Tech stack
 
@@ -30,10 +30,10 @@ Clone the project by opening your terminal and running the following commands:
 
 ```bash
 git clone https://github.com/Kakechu/country-info.git
-cd country info
+cd country-info
 ```
 
-Install the app:
+Install dependencies and start the dev server:
 
 ```bash
 npm install

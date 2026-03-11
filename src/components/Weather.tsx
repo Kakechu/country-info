@@ -82,8 +82,8 @@ const Weather = ({ city, lat, lng }: WeatherProps) => {
       </Box>
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
         <Typography variant="body2">Wind {windspeed} m/s</Typography>
-        <Typography variant="body2">Max {daily.temperature_2m_max[0]} °C</Typography>
         <Typography variant="body2">Min {daily.temperature_2m_min[0]} °C</Typography>
+        <Typography variant="body2">Max {daily.temperature_2m_max[0]} °C</Typography>
       </Box>
     </Box>
   )

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Alert, Box, Typography } from '@mui/material'
 
 type WeatherProps = {
   city: string
@@ -35,6 +35,7 @@ const getWeatherDescription = (code: number): string => {
 
 const Weather = ({ city, lat, lng }: WeatherProps) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (lat == null || lng == null) {
@@ -47,13 +48,19 @@ const Weather = ({ city, lat, lng }: WeatherProps) => {
       try {
         const response = await axios.get<WeatherData>(url)
         setWeatherData(response.data)
+        setError(null)
       } catch (error) {
         console.log('error:', error)
+        setError('Failed to fetch weather. Please try again later.')
       }
     }
 
     fetchWeather()
   }, [lat, lng])
+
+  if (error) {
+    return <Alert severity="error">{error}</Alert>
+  }
 
   if (!weatherData) {
     return <Typography>Loading weather...</Typography>

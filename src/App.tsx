@@ -13,6 +13,8 @@ function App() {
   const [countries, setCountries] = useState<Country[]>([])
   const [searchWord, setSearchWord] = useState<string>('')
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleSearchWordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(event.target.value)
@@ -22,11 +24,16 @@ function App() {
   // Get all countries on mount
   useEffect(() => {
     const fetchCountries = async () => {
+      setIsLoading(true)
       try {
         const response = await axios.get<Country[]>(BASEURL)
         setCountries(response.data)
+        setError(null)
       } catch (error) {
         console.error('Error fetching countries:', error)
+        setError('Failed to fetch countries. Please try again later.')
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchCountries()
@@ -63,6 +70,16 @@ function App() {
       </Typography>
 
       <CountryForm value={searchWord} onChange={handleSearchWordChange} />
+      {error && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
+      )}
+      {isLoading && !error && (
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+          Loading countries...
+        </Typography>
+      )}
       {tooManyMatches && <Alert severity="info"> Too many matches</Alert>}
       {shouldShowList && (
         <CountryList countriesToShow={countryNamesToShow} setSelectedCountry={setSelectedCountry} />

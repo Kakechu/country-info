@@ -4,6 +4,8 @@ This is a small React project to display country information from restcountries.
 
 It has been created using Vite as the development environment and build tool.
 
+AI was used for debugging and to help with styling.
+
 ### Features
 
 - Search for countries by name
